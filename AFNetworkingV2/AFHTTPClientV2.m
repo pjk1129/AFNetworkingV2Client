@@ -22,21 +22,6 @@
                              successBlock:(HTTPRequestV2SuccessBlock)successReqBlock
                               failedBlock:(HTTPRequestV2FailedBlock)failedReqBlock
 {
-    return [self requestWithBaseURLStr:URLString
-                                params:params
-                            httpMethod:httpMethod
-                              userInfo:nil
-                          successBlock:successReqBlock
-                           failedBlock:failedReqBlock];
-}
-
-+ (AFHTTPClientV2*)requestWithBaseURLStr:(NSString *)URLString
-                                  params:(NSDictionary *)params
-                              httpMethod:(HttpMethod)httpMethod
-                                userInfo:(NSDictionary*)userInfo
-                            successBlock:(HTTPRequestV2SuccessBlock)successReqBlock
-                             failedBlock:(HTTPRequestV2FailedBlock)failedReqBlock
-{
     AFHTTPClientV2   *httpClient = [[AFHTTPClientV2 alloc] initWithBaseURL:nil];
         
     if (httpMethod == HttpMethodGet) {

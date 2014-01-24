@@ -39,12 +39,5 @@ typedef void (^HTTPRequestV2FailedBlock)(NSError *error);
                              successBlock:(HTTPRequestV2SuccessBlock)successReqBlock
                               failedBlock:(HTTPRequestV2FailedBlock)failedReqBlock;
 
-+ (AFHTTPClientV2*)requestWithBaseURLStr:(NSString *)URLString
-                                  params:(NSDictionary *)params
-                              httpMethod:(HttpMethod)httpMethod
-                                userInfo:(NSDictionary*)userInfo
-                            successBlock:(HTTPRequestV2SuccessBlock)successReqBlock
-                             failedBlock:(HTTPRequestV2FailedBlock)failedReqBlock;
-
 
 @end
