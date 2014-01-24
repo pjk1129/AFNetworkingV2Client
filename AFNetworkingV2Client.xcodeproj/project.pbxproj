@@ -50,6 +50,7 @@
 		85CC211A18923AC000B3BAD9 /* news_comment_send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CC211318923AC000B3BAD9 /* news_comment_send_btn@2x.png */; };
 		85CC211D18923AE100B3BAD9 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC211C18923AE100B3BAD9 /* CommentView.m */; };
 		85CC212018923B9600B3BAD9 /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC211F18923B9600B3BAD9 /* UIView+frame.m */; };
+		85CC212218925B1D00B3BAD9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85CC212118925B1D00B3BAD9 /* README.md */; };
 		85FF93A61890B673007FBEF9 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF938C1890B673007FBEF9 /* NSData+GIF.m */; };
 		85FF93A71890B673007FBEF9 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF938E1890B673007FBEF9 /* SDImageCache.m */; };
 		85FF93A81890B673007FBEF9 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF93901890B673007FBEF9 /* SDWebImageCompat.m */; };
@@ -146,6 +147,7 @@
 		85CC211C18923AE100B3BAD9 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		85CC211E18923B9600B3BAD9 /* UIView+frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
 		85CC211F18923B9600B3BAD9 /* UIView+frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
+		85CC212118925B1D00B3BAD9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		85FF938B1890B673007FBEF9 /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
 		85FF938C1890B673007FBEF9 /* NSData+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GIF.m"; sourceTree = "<group>"; };
 		85FF938D1890B673007FBEF9 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		85429989188F762E0024FBA4 /* AFNetworkingV2Client */ = {
 			isa = PBXGroup;
 			children = (
+				85CC212118925B1D00B3BAD9 /* README.md */,
 				85FF938A1890B673007FBEF9 /* SDWebImageV3 */,
 				854299B2188F76B80024FBA4 /* AFNetworkingV2 */,
 				85429992188F762E0024FBA4 /* AppDelegate.h */,
@@ -500,6 +503,7 @@
 			files = (
 				854299E3188F794A0024FBA4 /* Icon.png in Resources */,
 				85CC211918923AC000B3BAD9 /* news_comment_send_btn_disable@2x.png in Resources */,
+				85CC212218925B1D00B3BAD9 /* README.md in Resources */,
 				85CC211718923AC000B3BAD9 /* news_comment_close_btn@2x.png in Resources */,
 				85FF93BE189154EF007FBEF9 /* bg_content.png in Resources */,
 				854299F0188FC54C0024FBA4 /* Default.png in Resources */,
