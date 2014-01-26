@@ -79,6 +79,9 @@
 
     self.baseURL = url;
 
+    self.timeOutSeconds = 20.0f;
+    self.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+
     self.requestSerializer = [AFHTTPRequestSerializer serializer];
     self.responseSerializer = [AFJSONResponseSerializer serializer];
 
@@ -125,6 +128,8 @@
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
@@ -149,6 +154,8 @@
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"HEAD" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id __unused responseObject, NSError *error) {
         if (error) {
@@ -173,6 +180,8 @@
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
@@ -198,6 +207,8 @@
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
@@ -222,6 +233,8 @@
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"PUT" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
@@ -246,6 +259,8 @@
                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"PATCH" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
@@ -270,6 +285,8 @@
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"DELETE" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters];
+    request.timeoutInterval = self.timeOutSeconds;
+    request.cachePolicy = self.cachePolicy;
 
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {

@@ -144,6 +144,14 @@
  */
 @property (readonly, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 
+
+// Number of seconds to wait before timing out - default is 10
+@property (nonatomic, assign) NSTimeInterval timeOutSeconds;
+
+//The default policy is NSURLRequestUseProtocolCachePolicy for URL load requests
+@property (nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
+
+
 ///---------------------------------------------
 /// @name Creating and Initializing HTTP Clients
 ///---------------------------------------------
