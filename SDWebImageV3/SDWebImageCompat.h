@@ -41,4 +41,4 @@
     #define SDDispatchQueueSetterSementics assign
 #endif
 
-extern inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image);
+extern UIImage *SDScaledImageForKey(NSString *key, UIImage *image);

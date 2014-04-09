@@ -51,6 +51,8 @@
 		85CC211D18923AE100B3BAD9 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC211C18923AE100B3BAD9 /* CommentView.m */; };
 		85CC212018923B9600B3BAD9 /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CC211F18923B9600B3BAD9 /* UIView+frame.m */; };
 		85CC212218925B1D00B3BAD9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85CC212118925B1D00B3BAD9 /* README.md */; };
+		85FF7C8318ADF2C8001B57C3 /* PModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF7C8218ADF2C8001B57C3 /* PModelBase.m */; };
+		85FF7C8618AE03D4001B57C3 /* TextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF7C8518AE03D4001B57C3 /* TextModel.m */; };
 		85FF93A61890B673007FBEF9 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF938C1890B673007FBEF9 /* NSData+GIF.m */; };
 		85FF93A71890B673007FBEF9 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF938E1890B673007FBEF9 /* SDImageCache.m */; };
 		85FF93A81890B673007FBEF9 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FF93901890B673007FBEF9 /* SDWebImageCompat.m */; };
@@ -148,6 +150,10 @@
 		85CC211E18923B9600B3BAD9 /* UIView+frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
 		85CC211F18923B9600B3BAD9 /* UIView+frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
 		85CC212118925B1D00B3BAD9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		85FF7C8118ADF2C8001B57C3 /* PModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PModelBase.h; sourceTree = "<group>"; };
+		85FF7C8218ADF2C8001B57C3 /* PModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PModelBase.m; sourceTree = "<group>"; };
+		85FF7C8418AE03D4001B57C3 /* TextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextModel.h; sourceTree = "<group>"; };
+		85FF7C8518AE03D4001B57C3 /* TextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextModel.m; sourceTree = "<group>"; };
 		85FF938B1890B673007FBEF9 /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
 		85FF938C1890B673007FBEF9 /* NSData+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GIF.m"; sourceTree = "<group>"; };
 		85FF938D1890B673007FBEF9 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -345,6 +351,10 @@
 		854299D7188F76C60024FBA4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				85FF7C8118ADF2C8001B57C3 /* PModelBase.h */,
+				85FF7C8218ADF2C8001B57C3 /* PModelBase.m */,
+				85FF7C8418AE03D4001B57C3 /* TextModel.h */,
+				85FF7C8518AE03D4001B57C3 /* TextModel.m */,
 				85FF93B518914FCD007FBEF9 /* QiuShi.h */,
 				85FF93B618914FCD007FBEF9 /* QiuShi.m */,
 				857F5AAF189205C500B24DC0 /* Comments.h */,
@@ -470,7 +480,7 @@
 		85429978188F762E0024FBA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = njut;
 				TargetAttributes = {
 					8542999A188F762E0024FBA4 = {
@@ -566,9 +576,11 @@
 				854299D1188F76B80024FBA4 /* AFHTTPSessionManager.m in Sources */,
 				85FF93AD1890B673007FBEF9 /* SDWebImagePrefetcher.m in Sources */,
 				854299D6188F76B80024FBA4 /* AFURLResponseSerialization.m in Sources */,
+				85FF7C8618AE03D4001B57C3 /* TextModel.m in Sources */,
 				85FF93A61890B673007FBEF9 /* NSData+GIF.m in Sources */,
 				85CC211D18923AE100B3BAD9 /* CommentView.m in Sources */,
 				85FF93C118915523007FBEF9 /* QiushiCell.m in Sources */,
+				85FF7C8318ADF2C8001B57C3 /* PModelBase.m in Sources */,
 				85FF93AC1890B673007FBEF9 /* SDWebImageManager.m in Sources */,
 				854299CD188F76B80024FBA4 /* AFHTTPClientV2.m in Sources */,
 				854299EB188FC3BA0024FBA4 /* HomeViewController.m in Sources */,
@@ -608,7 +620,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -647,7 +658,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -703,7 +713,6 @@
 		854299B0188F762E0024FBA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AFNetworkingV2Client.app/AFNetworkingV2Client";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -726,7 +735,6 @@
 		854299B1188F762E0024FBA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AFNetworkingV2Client.app/AFNetworkingV2Client";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

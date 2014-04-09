@@ -56,6 +56,7 @@
 - (void)imageRequest
 {
     id urlStr = @"http://img0.bdstatic.com/img/image/249b58f8c5494eef01f0c8570a8e2fe9925bd317dcd.jpg";
+    urlStr = @"http://b1.hoopchina.com.cn/games/core/20140215_jeep.jpg#1#_640x1136.jpg";
     [_imageView setImageWithURLString:urlStr
                      placeholderImage:[UIImage imageNamed:@"Icon_120.png"]];
 }

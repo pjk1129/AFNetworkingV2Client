@@ -10,6 +10,7 @@
 #import "AFHTTPClientV2.h"
 #import "QiushiCell.h"
 #import "CommentsViewController.h"
+#import "TextModel.h"
 
 @interface QiushiViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -54,11 +55,14 @@
             NSMutableArray  *strollArray = [NSMutableArray arrayWithCapacity:[array count]];
             for (int i = 0; i < [array count]; i++) {
                 NSDictionary *qiushiDic = [array objectAtIndex:i];
-                QiuShi *qs = [[QiuShi alloc] initWithQiuShiDictionary:qiushiDic];
-                [strollArray addObject:qs];
+                TextModel  *model = [[TextModel alloc] initWithDict:qiushiDic];
+                [strollArray addObject:model];
+//                QiuShi *qs = [[QiuShi alloc] initWithQiuShiDictionary:qiushiDic];
+//                [strollArray addObject:qs];
             }
             
-            strongSelf.dataArray = strollArray;
+//            strongSelf.dataArray = strollArray;
+            NSLog(@"%@",strollArray);
         }
 
         
