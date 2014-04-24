@@ -1,6 +1,6 @@
 // AFHTTPSessionManager.h
 //
-// Copyright (c) 2013 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 #import "AFURLSessionManager.h"
 
 /**
- `AFHTTPSessionManager` is a subclass of `AFURLSessionManager` with convenience methods for making HTTP requests. When a `baseURL` is provided, requests made with the `GET` / `POST` / et al. convenience methods can be made with relative paths; network reachability is also scoped to the host of the base URL as well.
+ `AFHTTPSessionManager` is a subclass of `AFURLSessionManager` with convenience methods for making HTTP requests. When a `baseURL` is provided, requests made with the `GET` / `POST` / et al. convenience methods can be made with relative paths.
  
  ## Subclassing Notes
  
@@ -91,13 +91,6 @@
  */
 @property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
 
-
-// Number of seconds to wait before timing out - default is 10
-@property (nonatomic, assign) NSTimeInterval timeOutSeconds;
-
-//The default policy is NSURLRequestUseProtocolCachePolicy for URL load requests
-@property (nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
-
 ///---------------------
 /// @name Initialization
 ///---------------------
@@ -129,15 +122,6 @@
 - (instancetype)initWithBaseURL:(NSURL *)url
            sessionConfiguration:(NSURLSessionConfiguration *)configuration;
 
-/**
- Sets the value for the HTTP headers set in request objects made by the HTTP client. If `nil`, removes the existing value for that header.
- 
- @param field The HTTP header to set a default value for
- @param value The value set as default for the specified header, or `nil`
- */
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
-
-
 ///---------------------------
 /// @name Making HTTP Requests
 ///---------------------------
@@ -153,7 +137,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
-                   parameters:(NSDictionary *)parameters
+                   parameters:(id)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -168,7 +152,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)HEAD:(NSString *)URLString
-                    parameters:(NSDictionary *)parameters
+                    parameters:(id)parameters
                        success:(void (^)(NSURLSessionDataTask *task))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -183,7 +167,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(NSDictionary *)parameters
+                    parameters:(id)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -199,7 +183,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(NSDictionary *)parameters
+                    parameters:(id)parameters
      constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -215,7 +199,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)PUT:(NSString *)URLString
-                   parameters:(NSDictionary *)parameters
+                   parameters:(id)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -230,7 +214,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString
-                     parameters:(NSDictionary *)parameters
+                     parameters:(id)parameters
                         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
@@ -245,7 +229,7 @@
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)DELETE:(NSString *)URLString
-                      parameters:(NSDictionary *)parameters
+                      parameters:(id)parameters
                          success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 

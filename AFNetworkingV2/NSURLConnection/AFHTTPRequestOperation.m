@@ -1,6 +1,6 @@
 // AFHTTPRequestOperation.m
 //
-// Copyright (c) 2013 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -44,8 +44,12 @@ static dispatch_group_t http_request_operation_completion_group() {
 
 #pragma mark -
 
-@interface AFHTTPRequestOperation ()
+@interface AFURLConnectionOperation ()
 @property (readwrite, nonatomic, strong) NSURLRequest *request;
+@property (readwrite, nonatomic, strong) NSURLResponse *response;
+@end
+
+@interface AFHTTPRequestOperation ()
 @property (readwrite, nonatomic, strong) NSHTTPURLResponse *response;
 @property (readwrite, nonatomic, strong) id responseObject;
 @property (readwrite, nonatomic, strong) NSError *responseSerializationError;
@@ -53,8 +57,6 @@ static dispatch_group_t http_request_operation_completion_group() {
 @end
 
 @implementation AFHTTPRequestOperation
-@dynamic request;
-@dynamic response;
 @dynamic lock;
 
 - (instancetype)initWithRequest:(NSURLRequest *)urlRequest {
@@ -149,9 +151,9 @@ static dispatch_group_t http_request_operation_completion_group() {
 #pragma mark - AFURLRequestOperation
 
 - (void)pause {
-    int64_t offset = 0;
+    u_int64_t offset = 0;
     if ([self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey]) {
-        offset = [(NSNumber *)[self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey] longLongValue];
+        offset = [(NSNumber *)[self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey] unsignedLongLongValue];
     } else {
         offset = [(NSData *)[self.outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey] length];
     }
@@ -193,7 +195,7 @@ static dispatch_group_t http_request_operation_completion_group() {
     operation.responseSerializer = [self.responseSerializer copyWithZone:zone];
     operation.completionQueue = self.completionQueue;
     operation.completionGroup = self.completionGroup;
-
+    
     return operation;
 }
 

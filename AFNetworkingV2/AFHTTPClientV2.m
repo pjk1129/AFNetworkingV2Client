@@ -7,12 +7,7 @@
 //
 
 #import "AFHTTPClientV2.h"
-
-#ifdef DEBUG
-#define AFNSLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#define AFNSLog(xx, ...)  ((void)0)
-#endif
+#import "AFNetworking.h"
 
 @implementation AFHTTPClientV2
 
@@ -22,117 +17,130 @@
                              successBlock:(HTTPRequestV2SuccessBlock)successReqBlock
                               failedBlock:(HTTPRequestV2FailedBlock)failedReqBlock
 {
-    AFHTTPClientV2   *httpClient = [[AFHTTPClientV2 alloc] initWithBaseURL:nil];
-        
-    if (httpMethod == HttpMethodGet) {
-
-        NSString   *urlStr = URLString;
-        if ([params count]>0) {
-            NSMutableArray *pairs = [NSMutableArray arrayWithCapacity:0];
-            [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, obj]];
+    CGFloat  sysVersion = [[UIDevice currentDevice].systemVersion floatValue];
+    if (sysVersion < 7.0) {
+        AFHTTPRequestOperationManager   *httpClient = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:nil];
+        if (httpMethod == HttpMethodGet) {
+            
+            NSString   *urlStr = URLString;
+            if ([params count]>0) {
+                NSMutableArray *pairs = [NSMutableArray arrayWithCapacity:0];
+                [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                    [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, obj]];
+                }];
+                
+                NSString  *paramsString = [pairs componentsJoinedByString:@"&"];
+                NSInteger questLocation = [URLString rangeOfString:@"?"].location;
+                if (questLocation != NSNotFound) {
+                    urlStr = [NSString stringWithFormat:@"%@&%@",URLString,paramsString];
+                }else{
+                    urlStr = [NSString stringWithFormat:@"%@?%@",URLString,paramsString];
+                }
+            }
+            
+            [httpClient GET:urlStr parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
             }];
             
-            NSString  *paramsString = [pairs componentsJoinedByString:@"&"];
-            NSInteger questLocation = [URLString rangeOfString:@"?"].location;
-            if (questLocation != NSNotFound) {
-                urlStr = [NSString stringWithFormat:@"%@&%@",URLString,paramsString];
-            }else{
-                urlStr = [NSString stringWithFormat:@"%@?%@",URLString,paramsString];
-            }
+        }else if (httpMethod == HttpMethodPost){
+            
+            
+            [httpClient POST:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
+            }];
+            
+        }else if (httpMethod == HttpMethodDelete){
+            
+            
+            [httpClient DELETE:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
+            }];
+            
         }
         
-        AFNSLog(@"urlStr: %@",urlStr);
-
-        
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && defined(VerIsiOS7_Or_Later))
-
-        [httpClient GET:urlStr parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
+    }else{
+        AFHTTPSessionManager   *httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
+        if (httpMethod == HttpMethodGet) {
+            NSString   *urlStr = URLString;
+            if ([params count]>0) {
+                NSMutableArray *pairs = [NSMutableArray arrayWithCapacity:0];
+                [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                    [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, obj]];
+                }];
+                
+                NSString  *paramsString = [pairs componentsJoinedByString:@"&"];
+                NSInteger questLocation = [URLString rangeOfString:@"?"].location;
+                if (questLocation != NSNotFound) {
+                    urlStr = [NSString stringWithFormat:@"%@&%@",URLString,paramsString];
+                }else{
+                    urlStr = [NSString stringWithFormat:@"%@?%@",URLString,paramsString];
+                }
             }
             
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
-#else
-        
-        [httpClient GET:urlStr parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
-            }
+            [httpClient GET:urlStr parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
+            }];
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
-        
-#endif
-        
-    }else if (httpMethod == HttpMethodPost){
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && defined(VerIsiOS7_Or_Later))
-        [httpClient POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
-            }
+        }else if (httpMethod == HttpMethodPost){
             
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
-        
-#else
-        
-        [httpClient POST:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
-            }
+            [httpClient POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
+            }];
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
-        
-#endif
-   
-    }else if (httpMethod == HttpMethodDelete){
-        
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && defined(VerIsiOS7_Or_Later))
-        [httpClient DELETE:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
-            }
+        }else if (httpMethod == HttpMethodDelete){
             
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
-        
-#else
-        
-        [httpClient DELETE:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if (successReqBlock) {
-                successReqBlock(responseObject);
-            }
+            [httpClient DELETE:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+                if (successReqBlock) {
+                    successReqBlock(responseObject);
+                }
+                
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                if (failedReqBlock) {
+                    failedReqBlock(error);
+                }
+            }];
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            if (failedReqBlock) {
-                failedReqBlock(error);
-            }
-        }];
+            
+        }
         
-#endif
-   
     }
     
-    return httpClient;
+    return [[AFHTTPClientV2 alloc] init];
 }
-
 
 @end

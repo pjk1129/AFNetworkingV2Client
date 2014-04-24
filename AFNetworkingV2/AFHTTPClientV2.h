@@ -20,18 +20,8 @@ typedef void (^HTTPRequestV2SuccessBlock)(id responseObject);
 typedef void (^HTTPRequestV2FailedBlock)(NSError *error);
 
 
-#define VerIsiOS7_Or_Later      !([[UIDevice currentDevice] systemVersion] floatValue < 7.0)
+@interface AFHTTPClientV2 : NSObject
 
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && defined(VerIsiOS7_Or_Later))
-#import "AFHTTPSessionManager.h"
-@interface AFHTTPClientV2 : AFHTTPSessionManager
-
-#else
-#import "AFHTTPRequestOperationManager.h"
-
-@interface AFHTTPClientV2 : AFHTTPRequestOperationManager
-
-#endif
 
 + (AFHTTPClientV2 *)requestWithBaseURLStr:(NSString *)URLString
                                    params:(NSDictionary *)params

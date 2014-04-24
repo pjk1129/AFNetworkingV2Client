@@ -106,7 +106,7 @@
      key：json键值
      
      带自定义类型的键值说明
-     ATTRIBUTE_INFO(@"intrestedApps", @"MAppInfo"), @"intrested_app"
+     ATTRIBUTE_INFO(@"intrestedApps", @"NSArray", @"MAppInfo")  @"intrested_app"
      value：intrestedApps MAppInfo类型
      key：intrested_app
      */
