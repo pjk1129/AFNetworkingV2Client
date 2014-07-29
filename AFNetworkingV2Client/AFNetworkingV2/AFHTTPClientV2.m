@@ -121,7 +121,7 @@
         }
 
     }
-
+    
     return httpV2;
 }
 
@@ -135,8 +135,8 @@
     AFHTTPClientV2 *httpV2 =  [[AFHTTPClientV2 alloc] init];
     httpV2.userInfo = userInfo;
     
-//    CGFloat  sysVersion = [[UIDevice currentDevice].systemVersion floatValue];
-//    if (sysVersion < 7.0) {
+    CGFloat  sysVersion = [[UIDevice currentDevice].systemVersion floatValue];
+    if (sysVersion < 7.0) {
         AFHTTPRequestOperationManager   *httpClient = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:nil];
         [httpClient POST:URLString parameters:parameters constructingBodyWithBlock:block success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if (success) {
@@ -148,18 +148,18 @@
             }
         }];
 
-//    }else{
-//        AFHTTPSessionManager   *httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
-//        [httpClient POST:URLString parameters:parameters constructingBodyWithBlock:block success:^(NSURLSessionDataTask *task, id responseObject) {
-//            if (success) {
-//                success(responseObject);
-//            }
-//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//            if (failure) {
-//                failure(error);
-//            }
-//        }];
-//    }
+    }else{
+        AFHTTPSessionManager   *httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
+        [httpClient POST:URLString parameters:parameters constructingBodyWithBlock:block success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (success) {
+                success(httpV2, responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (failure) {
+                failure(httpV2, error);
+            }
+        }];
+    }
     return httpV2;
 }
 
