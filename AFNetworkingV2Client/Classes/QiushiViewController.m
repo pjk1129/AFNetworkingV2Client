@@ -44,7 +44,7 @@
     [params setObject:@"1" forKey:@"page"];
     
     __weak QiushiViewController  *weakSelf = self;
-    [AFHTTPClientV2 requestWithBaseURLStr:@"http://m2.qiushibaike.com/article/list/latest" params:params httpMethod:HttpMethodGet successBlock:^(id responseObject) {
+    [AFHTTPClientV2 requestWithBaseURLStr:@"http://m2.qiushibaike.com/article/list/latest" params:params httpMethod:HttpMethodGet successBlock:^(AFHTTPClientV2 *request, id responseObject) {
         
         NSLog(@"GET responseObject: %@",responseObject);
         QiushiViewController  *strongSelf = weakSelf;
@@ -66,7 +66,7 @@
         }
 
         
-    } failedBlock:^(NSError *error) {
+    } failedBlock:^(AFHTTPClientV2 *request, NSError *error) {
         NSLog(@"GET error: %@",error);
         QiushiViewController  *strongSelf = weakSelf;
         [strongSelf.indicatorView stopAnimating];

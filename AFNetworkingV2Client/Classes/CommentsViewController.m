@@ -60,11 +60,11 @@
     [params setObject:content forKey:@"content"];
     [params setObject:@"0" forKey:@"anonymous"];
     NSString  *urlStr = [NSString stringWithFormat:@"http://m2.qiushibaike.com/article/%@/comment/create",self.qiuShiContent.qiushiID];
-    [AFHTTPClientV2 requestWithBaseURLStr:urlStr params:params httpMethod:HttpMethodPost successBlock:^(id responseObject) {
+    [AFHTTPClientV2 requestWithBaseURLStr:urlStr params:params httpMethod:HttpMethodPost successBlock:^(AFHTTPClientV2 *request, id responseObject) {
         NSLog(@"POST responseObject: %@",responseObject);
 
         
-    } failedBlock:^(NSError *error) {
+    } failedBlock:^(AFHTTPClientV2 *request, NSError *error) {
         NSLog(@"POST error: %@",error);
 
     }];
@@ -95,7 +95,7 @@
     
     NSString  *urlStr = [NSString stringWithFormat:@"http://m2.qiushibaike.com/article/%@/comments",self.qiuShiContent.qiushiID];
     
-    [AFHTTPClientV2 requestWithBaseURLStr:urlStr params:params httpMethod:HttpMethodGet successBlock:^(id responseObject) {
+    [AFHTTPClientV2 requestWithBaseURLStr:urlStr params:params httpMethod:HttpMethodGet successBlock:^(AFHTTPClientV2 *request, id responseObject) {
         
         NSLog(@"GET responseObject: %@",responseObject);
         CommentsViewController  *strongSelf = weakSelf;
@@ -112,7 +112,7 @@
         }
         
         
-    } failedBlock:^(NSError *error) {
+    } failedBlock:^(AFHTTPClientV2 *request, NSError *error) {
         NSLog(@"GET error: %@",error);
 
     }];
